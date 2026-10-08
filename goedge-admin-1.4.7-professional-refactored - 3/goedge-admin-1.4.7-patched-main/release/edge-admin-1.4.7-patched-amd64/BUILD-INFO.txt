@@ -1,0 +1,12 @@
+package_name=edge-admin-1.4.7-patched-amd64
+source_host=162.120.71.174
+source_path=/usr/local/goedge/edge-admin
+source_arch=x86_64
+source_version=1.4.7
+pull_date_local=2026-04-20
+pull_timezone_local=America/Los_Angeles
+remote_bundle_sha256=1d219dd969c785baa43d94d3233b4a88c8ab161e8c16ae38f06a068f340d0a41
+local_bundle_sha256=1d219dd969c785baa43d94d3233b4a88c8ab161e8c16ae38f06a068f340d0a41
+binary_sha256=f237281f8890d2d6155a39ffabba6459d31865af85dabeaf9435643957adbeac
+included_paths=bin/edge-admin,web/views/@default,configs/plus.cache.json
+excluded_runtime_paths=configs/server.yaml,configs/api_admin.yaml,configs/api_db.yaml,edge-api/**,data/**,logs/**

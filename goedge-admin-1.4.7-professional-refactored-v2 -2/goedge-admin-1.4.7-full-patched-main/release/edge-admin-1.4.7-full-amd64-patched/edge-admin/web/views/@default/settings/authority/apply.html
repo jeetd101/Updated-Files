@@ -1,0 +1,42 @@
+{$layout}
+{$template "menu"}
+
+<div v-if="teaIsPlus">
+   <div class="ui message success icon">
+      <i class="icon gem outline small yellow"></i>
+      <div class="content">
+         当前系统已授权，无需再次申请注册码。
+      </div>
+   </div>
+
+   <b-status-card>
+      <b-status-card-item label="状态">
+         <span class="green">已授权</span>
+      </b-status-card-item>
+      <b-status-card-item label="版本">
+         Enterprise Unlimited
+      </b-status-card-item>
+      <b-status-card-item label="节点数限制">
+         无限制
+      </b-status-card-item>
+      <b-status-card-item label="开通组件">
+         所有组件
+      </b-status-card-item>
+      <b-status-card-item label="结束日期">
+         <span class="green">终身授权</span>
+      </b-status-card-item>
+   </b-status-card>
+</div>
+
+<b-status-card v-else>
+   <b-status-card-item label="购买商业版后或者申请免费试用时，需要向本系统开发者官方先提交申请码。" span="full" :comment="[
+      '<strong>请拷贝上面的申请码发送给系统开发者，以便生成注册码</strong>。注册码生成后，只能在当前服务器上使用管理平台；如需迁移当前管理系统到别的服务器，请向官方重新申请注册码（重新申请后，商业版有效期保持不变）。',
+      '虚拟机或容器重启、系统升级、配置变更等可能会导致申请码失效，请小心操作。',
+   ]">
+      <form class="ui form">
+         <textarea rows="4" autocomplete="off" spellcheck="false">{{requestCode}}</textarea>
+      </form>
+   </b-status-card-item>
+ </b-status-card>
+
+<div class="margin"></div>

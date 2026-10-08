@@ -1,0 +1,61 @@
+{$layout}
+{$template "menu"}
+<table class="ui table selectable definition">
+	<tr>
+		<td class="title">节点名称</td>
+		<td>
+			{{node.name}}
+		</td>
+	</tr>
+	<tr>
+		<td>状态</td>
+		<td>
+			<label-on :v-is-on="node.isOn"></label-on>
+		</td>
+	</tr>
+	<tr>
+		<td>进程监听端口</td>
+		<td>
+			<network-addresses-view :v-addresses="node.listens"></network-addresses-view>
+			<p class="comment">用户节点进程监听的网络端口。</p>
+		</td>
+	</tr>
+	<tr v-if="node.hasHTTPS">
+		<td>HTTPS证书</td>
+		<td>
+			<ssl-certs-view :v-certs="node.certs"></ssl-certs-view>
+		</td>
+	</tr>
+	<tr>
+		<td>外部访问地址</td>
+		<td>
+			<network-addresses-view :v-addresses="node.accessAddrs"></network-addresses-view>
+			<p class="comment">可以公开访问用户平台的网络地址，用于展示用于平台链接、支付回调等。</p>
+		</td>
+	</tr>
+	<tr>
+		<td>描述</td>
+		<td>
+			<span v-if="node.description.length > 0">{{node.description}}</span>
+			<b-empty v-else>暂时还没有描述。</b-empty>
+		</td>
+	</tr>
+	<tr>
+		<td>版本信息</td>
+		<td>
+			<span>{{node.status.buildVersion}}</span>
+            <span v-if="!node.status.isActive && node.status.updatedAt > 0" class="red">已断开</span>
+            <span v-else-if="!node.status.isActive && node.status.updatedAt == 0" class="red">未连接</span>
+			<span v-else-if="upgrade.hasNew && upgrade.canAutoUpgrade" class="green">
+				{$if eq .upgradeInfo.Status "pending"}
+				升级正在准备中，稍后user节点将自动升级版本至 v{$ .upgradeInfo.LatestVersion}
+				{$else if eq .upgradeInfo.Status "upgrading"}
+				正在下载并升级到新版本{$ .upgradeInfo.LatestVersion}，请耐心等待
+				{$else}
+				{{upgrade.message}} <button class="ui button small" @click.prevent="upgradeNode(node.id, node.status.buildVersion, upgrade.version,upgrade.dlURL)" type="button">升级</button>
+				{$end}
+			</span>
+			<span v-else-if="upgrade.hasNew && !upgrade.canAutoUpgrade" v-html="upgrade.message"></span>
+		</td>
+	</tr>
+</table>

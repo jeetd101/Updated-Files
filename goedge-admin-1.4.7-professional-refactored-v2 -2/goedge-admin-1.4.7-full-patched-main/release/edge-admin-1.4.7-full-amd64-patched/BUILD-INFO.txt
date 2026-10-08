@@ -1,0 +1,12 @@
+package_name=edge-admin-1.4.7-full-amd64-patched
+base_source_dir=/Users/anan/Desktop/cdn/unpacked-amd64/edge-admin
+patch_source_dir=/Users/anan/Desktop/cdn/release/edge-admin-1.4.7-patched-amd64
+target_arch=x86_64
+target_version=1.4.7
+build_date_local=2026-04-20
+build_timezone_local=America/Los_Angeles
+package_size=235M
+edge_admin_binary_sha256=f237281f8890d2d6155a39ffabba6459d31865af85dabeaf9435643957adbeac
+edge_api_binary_sha256=1881bb1849dfba36faca93ae7f1f1d725d62d98cb976c62573b02683fdfe32ec
+included_core_paths=edge-admin/bin/edge-admin,edge-admin/web/public,edge-admin/web/views/@default,edge-admin/edge-api,edge-admin/configs/server.template.yaml,edge-admin/configs/plus.cache.json
+excluded_live_paths=configs/server.yaml,configs/api_admin.yaml,configs/api_db.yaml,edge-api/configs/api.yaml,edge-api/configs/db.yaml,logs/**,edge-api/logs/**,edge-api/data/**,*.bak
