@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/assets/shared/css/styles.css?v=2.9.0">
+</head>
+<body class="admin-page">
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">A</div><span>Quiz Admin</span></div>
+    <nav class="nav" id="adminNav">
+      <button class="active" data-section="overview">Overview</button>
+      <button data-section="loginPage">Local User Login Page</button>
+      <button data-section="structure">Subjects & Chapters</button>
+      <button data-section="questionBank">Question Bank</button>
+      <button data-section="materials">Course Material</button>
+      <button data-section="students">Students</button>
+    </nav>
+    <div class="sidebar-footer"><button class="btn btn-secondary btn-block" onclick="logout()">Sign out</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">PROTECTED ADMIN AREA</div><h1>Administration</h1></div><div class="user-chip"><div class="avatar" id="avatar">A</div><div class="user-meta"><strong id="userName"></strong><div class="muted small">Administrator</div></div></div></header>
+
+    <section id="overviewSection" class="admin-section">
+      <section class="grid grid-4 stats">
+        <div class="card stat-card"><div class="stat-icon">S</div><div><div class="stat-label">Students</div><div id="adminStudents" class="stat-value">0</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">F</div><div><div class="stat-label">Subject folders</div><div id="adminSubjects" class="stat-value">0</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">C</div><div><div class="stat-label">Chapters</div><div id="adminChapters" class="stat-value">0</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">Q</div><div><div class="stat-label">Questions</div><div id="adminQuestions" class="stat-value">0</div></div></div>
+      </section>
+      <div class="grid grid-2">
+        <div class="card"><div class="section-head compact"><h2>Published structure</h2></div><div id="adminStructureSummary"></div></div>
+        <div class="card"><div class="section-head compact"><h2>Platform summary</h2></div><div id="platformSummary" class="metric-list stacked"></div></div>
+      </div>
+      <div class="section-head"><h2>Recently joined students</h2></div>
+      <div class="card table-wrap"><table><thead><tr><th>Name</th><th>O. Number</th><th>Email</th><th>City</th><th>Gurukul</th><th>Joined</th></tr></thead><tbody id="recentStudents"></tbody></table></div>
+    </section>
+
+    <section id="loginPageSection" class="admin-section hidden">
+      <div class="section-head page-head">
+        <div><div class="eyebrow">LOCAL USER LOGIN PAGE</div><h2>Login page text</h2><div class="muted">Text saved here is shown to every Local User on the public Sign In / Sign Up page.</div></div>
+      </div>
+      <div class="card">
+        <form id="localLoginTextForm">
+          <div class="two-col-form">
+            <div class="field"><label>Platform name</label><input id="loginTextBrandTitle" class="input" name="brand_title" required maxlength="120"></div>
+            <div class="field"><label>Platform subtitle</label><input id="loginTextBrandSubtitle" class="input" name="brand_subtitle" required maxlength="180"></div>
+          </div>
+          <div class="field"><label>Small heading</label><input id="loginTextKicker" class="input" name="kicker" required maxlength="120"></div>
+          <div class="field"><label>Main heading</label><textarea id="loginTextHeroTitle" class="input small-textarea" name="hero_title" required maxlength="240"></textarea></div>
+          <div class="field"><label>Main description</label><textarea id="loginTextHeroDescription" class="input" name="hero_description" rows="4" required maxlength="800"></textarea></div>
+          <div class="grid grid-3">
+            <div class="card soft-card">
+              <div class="field"><label>Box 1 title</label><input id="loginTextFeature1Title" class="input" name="feature1_title" required maxlength="120"></div>
+              <div class="field"><label>Box 1 description</label><textarea id="loginTextFeature1Description" class="input small-textarea" name="feature1_description" required maxlength="300"></textarea></div>
+            </div>
+            <div class="card soft-card">
+              <div class="field"><label>Box 2 title</label><input id="loginTextFeature2Title" class="input" name="feature2_title" required maxlength="120"></div>
+              <div class="field"><label>Box 2 description</label><textarea id="loginTextFeature2Description" class="input small-textarea" name="feature2_description" required maxlength="300"></textarea></div>
+            </div>
+            <div class="card soft-card">
+              <div class="field"><label>Box 3 title</label><input id="loginTextFeature3Title" class="input" name="feature3_title" required maxlength="120"></div>
+              <div class="field"><label>Box 3 description</label><textarea id="loginTextFeature3Description" class="input small-textarea" name="feature3_description" required maxlength="300"></textarea></div>
+            </div>
+          </div>
+          <div class="action-row"><button id="saveLoginTextButton" class="btn btn-primary" type="submit">Save login page text</button><span id="loginTextStatus" class="inline-status muted small" aria-live="polite"></span></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="structureSection" class="admin-section hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">COURSE STRUCTURE</div><h2>Subject folders and chapters</h2><div class="muted">Create folders first, then add chapters inside each subject.</div></div></div>
+      <div class="grid grid-2">
+        <div class="card"><div class="section-head compact"><h3>Create subject folder</h3></div><form id="subjectForm"><div class="field"><label>Subject name</label><input class="input" name="title" required placeholder="e.g. Vachanamrut"></div><div class="field"><label>Description</label><textarea class="input small-textarea" name="description" placeholder="Optional"></textarea></div><button class="btn btn-primary">Create subject</button></form></div>
+        <div class="card"><div class="section-head compact"><h3>Create chapter</h3></div><form id="chapterForm"><div class="field"><label>Subject folder</label><select id="chapterSubjectSelect" class="input" name="subject_id" required></select></div><div class="field"><label>Chapter title</label><input class="input" name="title" required></div><div class="field"><label>Chapter number</label><input class="input" name="chapter_number" type="number" min="1"></div><button class="btn btn-primary">Create chapter</button></form></div>
+      </div>
+      <div class="section-head"><h2>Current folders</h2></div><div id="structureList" class="course-list"></div>
+    </section>
+
+    <section id="questionBankSection" class="admin-section hidden">
+      <div class="card">
+        <div class="section-head"><div><h2>Import Word question bank</h2><div class="muted small">Question form is selected automatically from its section: MCQ, True/False, Fill in the Blank, One-word, Short Answer, Match, Sequence and more.</div></div></div>
+        <form id="uploadForm">
+          <div class="two-col-form">
+            <div class="field"><label>Destination chapter</label><select id="chapterSelect" class="input" required></select><div class="field-help">Chapters are grouped by subject folder.</div></div>
+            <div class="field"><label>DOCX, TXT or MD file</label><input id="questionFile" class="input" name="file" type="file" accept=".docx,.txt,.md"></div>
+          </div>
+          <div class="field"><label>Or paste question-bank text</label><textarea id="pastedText" class="input" name="pasted_text" placeholder="1. Question text&#10;A. Option one&#10;B. Option two&#10;જવાબ: B"></textarea></div>
+          <div class="action-row"><button id="detectButton" class="btn btn-primary" type="submit">Detect questions and answers</button><div id="uploadStatus" class="inline-status muted small" aria-live="polite"></div></div>
+        </form>
+      </div>
+      <div id="previewSection" class="hidden"><div class="section-head"><div><h2>Import preview</h2><div id="previewSummary" class="muted small"></div><div id="previewWarnings" class="preview-warnings"></div></div><button id="importButton" class="btn btn-success" type="button">Import detected questions</button></div><div id="previewList"></div></div>
+      <div class="section-head page-head question-manager-head"><div><h2>Chapter question manager</h2><div class="muted small">Select a destination chapter above to edit or delete its imported questions and answers individually.</div></div><button id="refreshQuestionsButton" class="btn btn-secondary" type="button">Refresh questions</button></div>
+      <div id="chapterQuestionsList" class="card table-wrap"><div class="empty-state">Select a chapter to view its questions.</div></div>
+    </section>
+
+    <section id="materialsSection" class="admin-section hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">STUDY CONTENT</div><h2>Course material before quiz</h2><div class="muted">Upload or paste chapter material that students can read before starting the exam.</div></div></div>
+      <div class="card">
+        <form id="materialForm">
+          <div class="two-col-form"><div class="field"><label>Chapter</label><select id="materialChapterSelect" class="input" name="chapter_id" required></select></div><div class="field"><label>Material title</label><input class="input" name="title" required placeholder="e.g. Chapter summary"></div></div>
+          <div class="field"><label>DOCX, TXT or MD file</label><input id="materialFile" class="input" type="file" name="file" accept=".docx,.txt,.md"></div>
+          <div class="field"><label>Or paste course material</label><textarea id="materialText" class="input" name="pasted_text" placeholder="Paste study notes, chapter text or revision points here..."></textarea></div>
+          <div class="action-row"><button id="saveMaterialButton" class="btn btn-primary">Save course material</button><span id="materialStatus" class="inline-status muted small"></span></div>
+        </form>
+      </div>
+      <div class="section-head"><h2>Published materials</h2></div><div id="materialsList" class="card table-wrap"></div>
+    </section>
+
+    <section id="studentsSection" class="admin-section hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">PRIVATE STUDENT DATA</div><h2>Student profiles</h2><div class="muted">This page is accessible only to administrators.</div></div></div>
+      <div class="card table-wrap"><table><thead><tr><th>Name</th><th>O. Number</th><th>Email</th><th>Age / DOB</th><th>City</th><th>Gurukul</th><th>Mobile</th><th>Attempts</th><th>Action</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<div id="adminModalBackdrop" class="admin-modal-backdrop hidden" aria-hidden="true">
+  <div class="admin-modal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div class="admin-modal-head"><div><div class="eyebrow">ADMIN EDIT</div><h3 id="adminModalTitle">Edit</h3></div><button id="adminModalClose" class="icon-close" type="button" aria-label="Close">×</button></div>
+    <div id="adminModalBody"></div>
+  </div>
+</div>
+<script src="/assets/shared/js/common.js?v=2.9.0"></script>
+<script src="/assets/admin/admin.js?v=2.9.0"></script>
+</body>
+</html>

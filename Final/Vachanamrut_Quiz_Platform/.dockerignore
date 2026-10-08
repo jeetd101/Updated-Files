@@ -1,0 +1,10 @@
+.venv
+__pycache__
+*.pyc
+.git
+.env
+database/backups
+data/*.db
+data/*.db-*
+data/mail_outbox
+uploads/*

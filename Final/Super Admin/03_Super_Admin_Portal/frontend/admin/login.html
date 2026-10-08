@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6f3215">
+  <title>Vachanamrut Quiz Platform | Administrator Access</title>
+  <link rel="stylesheet" href="/assets/shared/css/styles.css?v=2.8.0">
+  <link rel="stylesheet" href="/assets/shared/css/login.css?v=2.8.0">
+</head>
+<body class="login-v14-body">
+<div class="login-v14-shell admin-auth-shell">
+  <section class="login-v14-visual admin-auth-visual" aria-label="Administrator portal">
+    <div class="login-v14-brand"><span class="login-v14-brandmark">A</span><span><strong>Vachanamrut Quiz Admin</strong><small>Administrator Portal</small></span></div>
+    <div class="login-v14-copy"><span class="login-v14-kicker">ADMINISTRATOR ACCESS</span><h1>Manage content, students and quiz operations.</h1><p>Administrator accounts require Super Admin approval before the first sign in.</p></div>
+    <div class="login-v14-points">
+      <article><span>01</span><div><strong>Sign up</strong><small>Submit an Administrator account request.</small></div></article>
+      <article><span>02</span><div><strong>Approval</strong><small>Super Admin reviews and approves the request.</small></div></article>
+      <article><span>03</span><div><strong>Sign in</strong><small>Approved Administrators can access the Admin Dashboard.</small></div></article>
+    </div>
+  </section>
+  <main class="login-v14-main">
+    <div class="login-v14-card">
+      <div class="login-v14-card-head"><div><span class="login-v14-eyebrow">ADMINISTRATOR ACCESS</span><h2 id="authTitle">Admin Sign In</h2><p id="authSubtitle">Only approved Administrator accounts can sign in here.</p></div><span id="accessBadge" class="login-v14-badge admin">ADMIN ACCESS</span></div>
+      <nav id="accessTabs" class="login-v14-actions" aria-label="Administrator access">
+        <button id="loginTab" class="login-v14-action admin active" type="button"><span class="login-v14-action-icon">A</span><span><strong>Sign In</strong><small>Approved admin</small></span></button>
+        <button id="registerTab" class="login-v14-action admin" type="button"><span class="login-v14-action-icon">+</span><span><strong>Sign Up</strong><small>Request admin access</small></span></button>
+      </nav>
+      <div id="authSuccess" class="login-v14-alert success hidden" role="status"></div>
+      <form id="loginForm" class="login-v14-panel">
+        <div class="login-v14-admin-note"><span>A</span><div><strong>Administrator Login</strong><small>Super Admin accounts use the separate Super Admin portal.</small></div></div>
+        <div class="field"><label for="loginIdentifier">Admin User Name or Email</label><input id="loginIdentifier" class="input" name="identifier" required autocomplete="username" placeholder="Enter admin User Name or email"></div>
+        <div class="field"><label for="loginPassword">Password</label><div class="password-field"><input id="loginPassword" class="input" type="password" name="password" required autocomplete="current-password" placeholder="Enter password"><button class="password-toggle" type="button" data-password-target="loginPassword">Show</button></div></div>
+        <button class="btn btn-primary btn-block login-v14-primary admin" type="submit">Open Admin Dashboard</button>
+        <button id="checkApprovalButton" class="btn btn-secondary btn-block" type="button">Check Approval Status</button>
+        <p id="loginError" class="error small"></p>
+        <div id="approvalStatus" class="login-v14-alert hidden" role="status"></div>
+        <button class="login-v14-forgot" type="button" data-open-forgot>Forgot your password?</button>
+      </form>
+      <form id="registerForm" class="login-v14-panel hidden">
+        <div class="login-v14-section-title"><h3>Request Administrator Account</h3><p>Your request will be sent to the Super Admin. You can sign in only after approval.</p></div>
+        <div class="form-grid compact-form-grid login-v14-form-grid">
+          <div class="field"><label>Full Name</label><input class="input" name="name" required autocomplete="name" placeholder="Enter full name"></div>
+          <div class="field"><label>User Name</label><input class="input" name="login_id" required minlength="3" maxlength="50" pattern="[A-Za-z0-9._-]{3,50}" autocomplete="username" placeholder="Example: admin_name"></div>
+          <div class="field"><label>Email Address</label><input class="input" type="email" name="email" required autocomplete="email" placeholder="name@example.com"></div>
+          <div class="field"><label>Password</label><div class="password-field"><input id="registerPassword" class="input" type="password" name="password" minlength="5" required autocomplete="new-password" placeholder="Minimum 5 characters"><button class="password-toggle" type="button" data-password-target="registerPassword">Show</button></div></div>
+          <div class="field"><label>Confirm Password</label><div class="password-field"><input id="confirmPassword" class="input" type="password" name="confirm_password" minlength="5" required autocomplete="new-password" placeholder="Re-enter password"><button class="password-toggle" type="button" data-password-target="confirmPassword">Show</button></div></div>
+        </div>
+        <button class="btn btn-primary btn-block login-v14-primary admin" type="submit">Submit Approval Request</button>
+        <p id="registerError" class="error small"></p>
+      </form>
+      <form id="forgotForm" class="login-v14-panel hidden">
+        <button id="backToLogin" class="login-v14-back" type="button">← Back to Admin Sign In</button>
+        <div class="login-v14-section-title"><h3>Admin Password Recovery</h3><p>Verify the registered Administrator account and set a new password.</p></div>
+        <div class="field"><label>Admin User Name or Email</label><input class="input" name="identifier" required autocomplete="username"></div>
+        <div class="field"><label>Registered Email</label><input class="input" type="email" name="email" required autocomplete="email"></div>
+        <div class="field"><label>Verification Detail</label><input class="input" name="verification" placeholder="Registered mobile number or date of birth"></div>
+        <div class="field"><label>New Password</label><div class="password-field"><input id="newPassword" class="input" type="password" name="new_password" minlength="5" required autocomplete="new-password"><button class="password-toggle" type="button" data-password-target="newPassword">Show</button></div></div>
+        <div class="field"><label>Confirm New Password</label><input id="confirmNewPassword" class="input" type="password" minlength="5" required autocomplete="new-password"></div>
+        <button class="btn btn-primary btn-block login-v14-primary admin" type="submit">Reset Admin Password</button><p id="forgotError" class="error small"></p>
+      </form>
+    </div>
+  </main>
+</div>
+<script src="/assets/shared/js/common.js?v=2.8.0"></script>
+<script>
+const loginTab=byId('loginTab'),registerTab=byId('registerTab'),loginForm=byId('loginForm'),registerForm=byId('registerForm'),forgotForm=byId('forgotForm'),accessTabs=byId('accessTabs'),authTitle=byId('authTitle'),authSubtitle=byId('authSubtitle'),accessBadge=byId('accessBadge'),authSuccess=byId('authSuccess');
+function clearMessages(){['loginError','registerError','forgotError'].forEach(id=>byId(id).textContent='');authSuccess.classList.add('hidden');byId('approvalStatus').classList.add('hidden');}
+function setPanel(panel,preserveSuccess=false){if(!preserveSuccess)clearMessages();const forgot=panel==='forgot';loginTab.classList.toggle('active',panel==='login');registerTab.classList.toggle('active',panel==='register');loginForm.classList.toggle('hidden',panel!=='login');registerForm.classList.toggle('hidden',panel!=='register');forgotForm.classList.toggle('hidden',!forgot);accessTabs.classList.toggle('hidden',forgot);const c={login:['Admin Sign In','Only approved Administrator accounts can sign in here.','ADMIN ACCESS'],register:['Admin Sign Up','Submit an Administrator approval request.','REQUEST ACCESS'],forgot:['Admin Password Recovery','Recover a registered Administrator account.','RECOVERY']}[panel];authTitle.textContent=c[0];authSubtitle.textContent=c[1];accessBadge.textContent=c[2];window.scrollTo({top:0,behavior:'smooth'});}
+loginTab.onclick=()=>setPanel('login');registerTab.onclick=()=>setPanel('register');document.querySelectorAll('[data-open-forgot]').forEach(b=>b.onclick=()=>setPanel('forgot'));byId('backToLogin').onclick=()=>setPanel('login');
+document.querySelectorAll('[data-password-target]').forEach(button=>button.onclick=()=>{const input=byId(button.dataset.passwordTarget),showing=input.type==='text';input.type=showing?'password':'text';button.textContent=showing?'Show':'Hide';});
+loginForm.addEventListener('submit',async e=>{e.preventDefault();byId('loginError').textContent='';try{const data=await api('/api/admin-login',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});location.href=data.redirect;}catch(err){byId('loginError').textContent=err.message;}});
+byId('checkApprovalButton').onclick=async()=>{const identifier=byId('loginIdentifier').value.trim(),password=byId('loginPassword').value;if(!identifier||!password){byId('loginError').textContent='Enter your User Name/email and password to check approval status.';return;}try{const result=await api('/api/admin-approval-status',{method:'POST',body:JSON.stringify({identifier,password})});const box=byId('approvalStatus');box.className='login-v14-alert '+(result.approval_status==='approved'?'success':result.approval_status==='rejected'?'error':'');box.innerHTML='<strong>'+result.approval_status.toUpperCase()+'</strong><br>'+escapeHtml(result.message);box.classList.remove('hidden');}catch(err){byId('loginError').textContent=err.message;}};
+registerForm.addEventListener('submit',async e=>{e.preventDefault();byId('registerError').textContent='';const data=Object.fromEntries(new FormData(e.target));if(data.password!==data.confirm_password){byId('registerError').textContent='Password and Confirm Password do not match.';return;}delete data.confirm_password;data.account_type='admin';try{const result=await api('/api/admin-register',{method:'POST',body:JSON.stringify(data)});const id=result.login_identifier||data.login_id;e.target.reset();setPanel('login',true);byId('loginIdentifier').value=id;authSuccess.innerHTML='<strong>Approval request submitted.</strong><br>'+escapeHtml(result.message)+'<br>Use “Check Approval Status” after the Super Admin reviews it.';authSuccess.classList.remove('hidden');}catch(err){byId('registerError').textContent=err.message;}});
+forgotForm.addEventListener('submit',async e=>{e.preventDefault();byId('forgotError').textContent='';const data=Object.fromEntries(new FormData(e.target));if(data.new_password!==byId('confirmNewPassword').value){byId('forgotError').textContent='New Password and Confirm New Password do not match.';return;}try{const result=await api('/api/admin-forgot-password',{method:'POST',body:JSON.stringify(data)});const id=data.identifier;e.target.reset();setPanel('login',true);byId('loginIdentifier').value=id;authSuccess.textContent=result.message;authSuccess.classList.remove('hidden');}catch(err){byId('forgotError').textContent=err.message;}});
+(async()=>{try{const data=await api('/api/me');if(data.user.role==='admin')location.href='/admin';else if(data.user.role==='super_admin')location.href='/super-admin';else location.href='/';}catch(_){}})();
+</script>
+</body></html>

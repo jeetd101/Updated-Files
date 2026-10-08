@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/.app_secret
+data/mail_outbox/

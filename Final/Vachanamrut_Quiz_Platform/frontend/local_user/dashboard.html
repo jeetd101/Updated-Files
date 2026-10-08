@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="/assets/shared/css/styles.css?v=2.8.0">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">V</div><span>Vachanamrut Quiz</span></div>
+    <nav class="nav" id="studentNav">
+      <button class="active" data-view="overview">Overview</button>
+      <button data-view="courses">Courses & Quiz</button>
+      <button data-view="results">Results</button>
+      <button data-view="revision">Revision <span id="revisionNavCount" class="nav-count">0</span></button>
+      <button data-view="profile">My Profile</button>
+    </nav>
+    <div class="sidebar-footer"><button class="btn btn-secondary btn-block" onclick="logout()">Sign out</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">STUDENT DASHBOARD</div><h1 id="welcome">Welcome</h1></div>
+      <div class="user-chip"><div class="avatar" id="avatar">U</div><div class="user-meta"><strong id="userName"></strong><div class="muted small" id="userEmail"></div></div></div>
+    </header>
+
+    <section id="overviewView" class="student-view">
+      <section class="hero-card card">
+        <div><span class="badge badge-neutral">No time limit</span><h2>Continue learning at your own pace.</h2><p class="muted">Study course material, practise selected chapters, and repeat every wrong answer from the revision section.</p></div>
+        <button class="btn btn-primary" data-open-view="courses">Start practising</button>
+      </section>
+
+      <section class="grid grid-4 stats">
+        <div class="card stat-card"><div class="stat-icon">Q</div><div><div class="stat-label">Quiz attempts</div><div id="statAttempts" class="stat-value">0</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">%</div><div><div class="stat-label">All-course accuracy</div><div id="statAccuracy" class="stat-value">0%</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">✓</div><div><div class="stat-label">Correct answers</div><div id="statCorrect" class="stat-value">0</div></div></div>
+        <div class="card stat-card"><div class="stat-icon">R</div><div><div class="stat-label">Revision pending</div><div id="statRevision" class="stat-value">0</div></div></div>
+      </section>
+
+      <section class="grid grid-2 analytics-grid">
+        <div class="card">
+          <div class="section-head compact"><div><h2>Overall course completion</h2><div class="muted small">Unique questions practised across all subjects</div></div></div>
+          <div class="donut-row"><div id="overallDonut" class="donut" style="--pct:0"><span>0%</span></div><div class="metric-list"><div><span>Practised</span><strong id="overallAttempted">0</strong></div><div><span>Remaining</span><strong id="overallRemaining">0</strong></div><div><span>Total questions</span><strong id="overallTotal">0</strong></div></div></div>
+        </div>
+        <div class="card">
+          <div class="section-head compact"><div><h2>Subject performance</h2><div class="muted small">Completion and objective accuracy</div></div></div>
+          <div id="subjectAnalytics" class="analytics-list"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head"><div><h2>Chapter progress</h2><div class="muted small">Single Vachanamrut chapter and other course results</div></div></div>
+        <div id="overviewChapterAnalytics" class="card analytics-table"></div>
+      </section>
+    </section>
+
+    <section id="coursesView" class="student-view hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">COURSE LIBRARY</div><h2>Select subjects and chapters</h2><div class="muted">Choose one chapter, multiple chapters, or chapters from different subjects.</div></div></div>
+      <div class="card quiz-builder-bar">
+        <div><strong id="selectedSummary">No chapters selected</strong><div class="muted small">Only approved Gujarati or English questions from those chapters will be used.</div></div>
+        <div class="builder-actions"><input id="questionCount" class="input compact-input" type="number" min="1" placeholder="All questions"><button id="studySelectedBtn" class="btn btn-secondary" type="button">Review material</button><button id="startQuizBtn" class="btn btn-primary" type="button">Start quiz</button></div>
+      </div>
+      <div id="questionTypeFilter" class="card question-type-filter"></div>
+      <div id="courseList" class="course-list"></div>
+    </section>
+
+    <section id="resultsView" class="student-view hidden">
+      <div class="section-head page-head results-page-head"><div><div class="eyebrow">PERSONAL ANALYTICS</div><h2>Results and progress</h2><div class="muted">Compare the full course with a single chapter.</div></div><div class="results-filter-control"><select id="analyticsFilter" class="input filter-select"><option value="all">All course</option></select></div></div>
+      <div id="filteredAnalytics" class="grid grid-3"></div>
+      <div class="section-head"><h2>Quiz history</h2></div>
+      <div class="card table-wrap quiz-history-wrap"><table class="quiz-history-table"><thead><tr><th>Chapter</th><th>Mode</th><th>Status</th><th>Complete</th><th>Accuracy</th><th>Date &amp; time</th><th>Action</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+    </section>
+
+    <section id="revisionView" class="student-view hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">FOCUSED REVISION</div><h2>Repeat wrong answers</h2><div class="muted">Every wrong objective answer is automatically added here. A correct revision attempt marks it mastered.</div></div><button id="startRevisionBtn" class="btn btn-primary" type="button">Start revision quiz</button></div>
+      <div id="revisionList" class="revision-list"></div>
+    </section>
+
+    <section id="profileView" class="student-view hidden">
+      <div class="section-head page-head"><div><div class="eyebrow">ACCOUNT</div><h2>My profile</h2></div></div>
+      <div id="profileCard" class="card profile-grid"></div>
+    </section>
+  </main>
+</div>
+
+<div id="quizModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card quiz-modal-card">
+    <div class="quiz-head">
+      <div class="quiz-progress-row"><div><div id="quizModeLabel" class="eyebrow">ACTIVE QUIZ</div><h2 id="quizTitle">Chapter Practice</h2></div><button id="closeQuizBtn" class="btn btn-secondary" type="button">Save & close</button></div>
+      <div class="progress"><span id="quizProgress" style="width:0%"></span></div>
+      <div id="quizStats" class="muted small quiz-stat-line"></div>
+    </div>
+    <div id="questionArea"></div>
+    <div class="quiz-actions sticky-actions"><button id="prevBtn" class="btn btn-secondary" type="button">Previous</button><button id="nextBtn" class="btn btn-secondary" type="button">Next</button><button id="finishQuizBtn" class="btn btn-primary" type="button">Finish quiz</button></div>
+  </div>
+</div>
+
+<div id="materialModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card reading-modal"><div class="modal-title-row"><div><div class="eyebrow">COURSE MATERIAL</div><h2>Review before quiz</h2></div><button id="closeMaterialBtn" class="btn btn-secondary" type="button">Close</button></div><div id="materialContent"></div></div>
+</div>
+
+<div id="resultModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card result-modal"><div class="modal-title-row"><div><div class="eyebrow">QUIZ RESULT</div><h2>Performance review</h2></div><button id="closeResultBtn" class="btn btn-secondary" type="button">Close</button></div><div id="resultContent"></div></div>
+</div>
+
+<script src="/assets/shared/js/common.js?v=2.8.0"></script>
+<script src="/assets/local_user/student.js?v=2.8.0"></script>
+</body>
+</html>

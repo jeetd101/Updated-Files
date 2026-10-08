@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.log
+data/*.db-shm
+data/*.db-wal
+uploads/*
+!uploads/.gitkeep
+data/*.db
+data/*.db-*
+data/mail_outbox/

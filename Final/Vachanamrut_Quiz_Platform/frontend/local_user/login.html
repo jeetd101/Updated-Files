@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173b82">
+  <title>Vachanamrut Quiz Platform | Local User Access</title>
+  <link rel="stylesheet" href="/assets/shared/css/styles.css?v=2.9.0">
+  <link rel="stylesheet" href="/assets/shared/css/login.css?v=2.9.0">
+</head>
+<body class="login-v14-body">
+<div class="login-v14-shell">
+  <section class="login-v14-visual" aria-label="Platform introduction">
+    <div class="login-v14-brand">
+      <span class="login-v14-brandmark">V</span>
+      <span><strong id="publicBrandTitle">Vachanamrut Quiz</strong><small id="publicBrandSubtitle">Learning & Revision Platform</small></span>
+    </div>
+    <div class="login-v14-copy">
+      <span id="publicKicker" class="login-v14-kicker">APPROVED QUESTION BANK ONLY</span>
+      <h1 id="publicHeroTitle">Learn chapter by chapter. Review every mistake.</h1>
+      <p id="publicHeroDescription">Practice without a timer, study uploaded course material, repeat wrong answers, and track progress by chapter, subject and complete course.</p>
+    </div>
+    <div class="login-v14-points">
+      <article><span>01</span><div><strong id="publicFeature1Title">Source controlled</strong><small id="publicFeature1Description">Questions and answers only from uploaded files.</small></div></article>
+      <article><span>02</span><div><strong id="publicFeature2Title">Personal dashboard</strong><small id="publicFeature2Description">Private results, analytics and revision history.</small></div></article>
+      <article><span>03</span><div><strong id="publicFeature3Title">Flexible learning</strong><small id="publicFeature3Description">No time limit. Resume an incomplete quiz.</small></div></article>
+    </div>
+  </section>
+
+  <main class="login-v14-main">
+    <div class="login-v14-card">
+      <div class="login-v14-card-head">
+        <div>
+          <span class="login-v14-eyebrow">LOCAL USER ACCESS</span>
+          <h2 id="authTitle">Sign In</h2>
+          <p id="authSubtitle">Sign in to your personal quiz and revision account.</p>
+        </div>
+        <span id="accessBadge" class="login-v14-badge">LOCAL USER</span>
+      </div>
+
+      <nav id="accessTabs" class="login-v14-actions" aria-label="Local user access">
+        <button id="loginTab" class="login-v14-action active" type="button">
+          <span class="login-v14-action-icon">→</span><span><strong>Sign In</strong><small>Existing account</small></span>
+        </button>
+        <button id="registerTab" class="login-v14-action" type="button">
+          <span class="login-v14-action-icon">+</span><span><strong>Sign Up</strong><small>Create account</small></span>
+        </button>
+      </nav>
+
+      <div id="authSuccess" class="login-v14-alert success hidden" role="status"></div>
+
+      <form id="loginForm" class="login-v14-panel">
+        <div class="field">
+          <label for="loginIdentifier">User Name or Email</label>
+          <input id="loginIdentifier" class="input" name="identifier" required autocomplete="username" placeholder="Enter your User Name or email">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="password-field">
+            <input id="loginPassword" class="input" type="password" name="password" required autocomplete="current-password" placeholder="Enter password">
+            <button class="password-toggle" type="button" data-password-target="loginPassword">Show</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block login-v14-primary" type="submit">Sign In</button>
+        <p id="loginError" class="error small"></p>
+        <button class="login-v14-forgot" type="button" data-open-forgot>Forgot your password?</button>
+      </form>
+
+      <form id="registerForm" class="login-v14-panel hidden">
+        <div class="form-grid compact-form-grid login-v14-form-grid">
+          <div class="field"><label>Full Name</label><input class="input" name="name" required autocomplete="name" placeholder="Enter full name"></div>
+          <div class="field"><label>User Name</label><input class="input" name="login_id" required minlength="3" maxlength="50" pattern="[A-Za-z0-9._-]{3,50}" autocomplete="username" placeholder="Example: user_name"></div>
+          <div class="field"><label>Email Address</label><input class="input" type="email" name="email" required autocomplete="email" placeholder="name@example.com"></div>
+          <div class="field"><label>Password</label><div class="password-field"><input id="registerPassword" class="input" type="password" name="password" minlength="5" required autocomplete="new-password" placeholder="Minimum 5 characters"><button class="password-toggle" type="button" data-password-target="registerPassword">Show</button></div></div>
+          <div class="field"><label>Confirm Password</label><div class="password-field"><input id="confirmPassword" class="input" type="password" name="confirm_password" minlength="5" required autocomplete="new-password" placeholder="Re-enter password"><button class="password-toggle" type="button" data-password-target="confirmPassword">Show</button></div></div>
+          <div class="field"><label>Mobile Number</label><input class="input" name="mobile" autocomplete="tel" placeholder="Mobile number"></div>
+          <div class="field"><label>Age</label><input class="input" type="number" name="age" min="5" max="100" placeholder="Age"></div>
+          <div class="field"><label>Date of Birth</label><input class="input" type="date" name="dob"></div>
+          <div class="field"><label>City</label><input class="input" name="city" placeholder="City"></div>
+          <div class="field"><label>Gurukul Name</label><input class="input" name="gurukul_name" placeholder="Gurukul name"></div>
+        </div>
+        <button class="btn btn-primary btn-block login-v14-primary" type="submit">Create Account</button>
+        <p id="registerError" class="error small"></p>
+        <p class="login-v14-after-create">After account creation, Sign In opens with your new User Name ready to use.</p>
+      </form>
+
+      <form id="forgotForm" class="login-v14-panel hidden">
+        <button id="backToLogin" class="login-v14-back" type="button">← Back to Sign In</button>
+        <div class="login-v14-section-title">
+          <h3>Forgot Password</h3>
+          <p>Verify your registered account details and set a new password.</p>
+        </div>
+        <div class="field"><label>User Name or Email</label><input class="input" name="identifier" required autocomplete="username" placeholder="User Name or email"></div>
+        <div class="field"><label>Registered Email</label><input class="input" type="email" name="email" required autocomplete="email" placeholder="Registered email"></div>
+        <div class="field"><label>Verification Detail</label><input class="input" name="verification" placeholder="Mobile number or DOB"><span class="field-help">Enter one detail stored in your profile.</span></div>
+        <div class="field"><label>New Password</label><div class="password-field"><input id="newPassword" class="input" type="password" name="new_password" minlength="5" required autocomplete="new-password"><button class="password-toggle" type="button" data-password-target="newPassword">Show</button></div></div>
+        <div class="field"><label>Confirm New Password</label><input id="confirmNewPassword" class="input" type="password" minlength="5" required autocomplete="new-password"></div>
+        <button class="btn btn-primary btn-block login-v14-primary" type="submit">Reset Password</button>
+        <p id="forgotError" class="error small"></p>
+      </form>
+    </div>
+  </main>
+</div>
+<script src="/assets/shared/js/common.js?v=2.9.0"></script>
+<script>
+const loginTab = byId('loginTab');
+const registerTab = byId('registerTab');
+const loginForm = byId('loginForm');
+const registerForm = byId('registerForm');
+const forgotForm = byId('forgotForm');
+const accessTabs = byId('accessTabs');
+const authTitle = byId('authTitle');
+const authSubtitle = byId('authSubtitle');
+const accessBadge = byId('accessBadge');
+const authSuccess = byId('authSuccess');
+let previousPanel = 'login';
+
+async function loadPublicLoginText() {
+  try {
+    const data = await api('/api/public/local-login-text');
+    const content = data.content || {};
+    const map = {
+      brand_title: 'publicBrandTitle', brand_subtitle: 'publicBrandSubtitle', kicker: 'publicKicker',
+      hero_title: 'publicHeroTitle', hero_description: 'publicHeroDescription',
+      feature1_title: 'publicFeature1Title', feature1_description: 'publicFeature1Description',
+      feature2_title: 'publicFeature2Title', feature2_description: 'publicFeature2Description',
+      feature3_title: 'publicFeature3Title', feature3_description: 'publicFeature3Description'
+    };
+    Object.entries(map).forEach(([key, id]) => {
+      const element = byId(id);
+      if (element && typeof content[key] === 'string' && content[key].trim()) element.textContent = content[key];
+    });
+  } catch (_) {
+    // Keep the built-in copy if public settings cannot be loaded.
+  }
+}
+
+function clearMessages() {
+  ['loginError','registerError','forgotError'].forEach(id => byId(id).textContent = '');
+  authSuccess.classList.add('hidden');
+}
+function setPanel(panel, preserveSuccess = false) {
+  if (!preserveSuccess) clearMessages();
+  const forgot = panel === 'forgot';
+  loginTab.classList.toggle('active', panel === 'login');
+  registerTab.classList.toggle('active', panel === 'register');
+  loginForm.classList.toggle('hidden', panel !== 'login');
+  registerForm.classList.toggle('hidden', panel !== 'register');
+  forgotForm.classList.toggle('hidden', !forgot);
+  accessTabs.classList.toggle('hidden', forgot);
+  const content = {
+    login: ['Sign In', 'Sign in to your personal quiz and revision account.', 'LOCAL USER'],
+    register: ['Sign Up', 'Create your personal quiz and revision account.', 'CREATE ACCOUNT'],
+    forgot: ['Forgot Password', 'Recover your registered Local User account.', 'RECOVERY']
+  }[panel];
+  authTitle.textContent = content[0]; authSubtitle.textContent = content[1]; accessBadge.textContent = content[2];
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+loadPublicLoginText();
+
+loginTab.addEventListener('click', () => setPanel('login'));
+registerTab.addEventListener('click', () => setPanel('register'));
+document.querySelectorAll('[data-open-forgot]').forEach(button => button.addEventListener('click', () => { previousPanel = 'login'; setPanel('forgot'); }));
+byId('backToLogin').addEventListener('click', () => setPanel(previousPanel));
+document.querySelectorAll('[data-password-target]').forEach(button => button.addEventListener('click', () => {
+  const input = byId(button.dataset.passwordTarget); const showing = input.type === 'text';
+  input.type = showing ? 'password' : 'text'; button.textContent = showing ? 'Show' : 'Hide';
+}));
+loginForm.addEventListener('submit', async event => {
+  event.preventDefault(); byId('loginError').textContent = '';
+  try { const data = await api('/api/login', { method:'POST', body:JSON.stringify(Object.fromEntries(new FormData(event.target))) }); location.href = data.redirect; }
+  catch (error) { byId('loginError').textContent = error.message; }
+});
+registerForm.addEventListener('submit', async event => {
+  event.preventDefault(); byId('registerError').textContent = '';
+  const data = Object.fromEntries(new FormData(event.target));
+  if (data.password !== data.confirm_password) { byId('registerError').textContent = 'Password and Confirm Password do not match.'; return; }
+  delete data.confirm_password; data.account_type = 'local_user';
+  if (data.age) data.age = Number(data.age); else delete data.age;
+  for (const key of Object.keys(data)) if (data[key] === '') delete data[key];
+  try {
+    const result = await api('/api/register', { method:'POST', body:JSON.stringify(data) });
+    const createdIdentifier = result.login_identifier || data.login_id;
+    event.target.reset(); setPanel('login', true); byId('loginIdentifier').value = createdIdentifier;
+    authSuccess.innerHTML = '<strong>Account created successfully.</strong><br>You can now sign in with User Name <b>' + createdIdentifier.replace(/[<>&]/g,'') + '</b> and your password.';
+    authSuccess.classList.remove('hidden'); byId('loginPassword').focus();
+  } catch (error) { byId('registerError').textContent = error.message; }
+});
+forgotForm.addEventListener('submit', async event => {
+  event.preventDefault(); byId('forgotError').textContent = '';
+  const data = Object.fromEntries(new FormData(event.target));
+  if (data.new_password !== byId('confirmNewPassword').value) { byId('forgotError').textContent = 'New Password and Confirm New Password do not match.'; return; }
+  for (const key of Object.keys(data)) if (data[key] === '') delete data[key];
+  try {
+    const result = await api('/api/forgot-password', { method:'POST', body:JSON.stringify(data) }); const identifier = data.identifier;
+    event.target.reset(); setPanel('login', true); byId('loginIdentifier').value = identifier; authSuccess.textContent = result.message; authSuccess.classList.remove('hidden'); byId('loginPassword').focus();
+  } catch (error) { byId('forgotError').textContent = error.message; }
+});
+(async () => { try { const data = await api('/api/me'); location.href = data.user.role === 'student' ? '/dashboard' : '/admin'; } catch (_) {} })();
+</script>
+</body>
+</html>

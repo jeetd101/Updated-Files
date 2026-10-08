@@ -1,0 +1,36 @@
+Vachanamrut_Quiz_Platform_v3.4_Separate_Secure_Deployments/
+|-- 00_Shared_MySQL_Database/
+|   |-- database/mysql_schema.sql
+|   |-- docker-compose.yml
+|   `-- .env.example
+|-- 01_Local_User_Portal/
+|   |-- frontend/local_user/
+|   |-- frontend/shared/
+|   |-- backend/app/
+|   |-- database/
+|   |-- uploads/
+|   |-- data/              (server-only, not public)
+|   |-- Dockerfile
+|   |-- docker-compose.yml
+|   `-- .env.example
+|-- 02_Admin_Portal/
+|   |-- frontend/admin/
+|   |-- frontend/shared/
+|   |-- backend/app/
+|   |-- database/
+|   |-- uploads/
+|   |-- data/              (server-only, not public)
+|   |-- Dockerfile
+|   |-- docker-compose.yml
+|   `-- .env.example
+`-- 03_Super_Admin_Portal/
+    |-- frontend/super_admin/
+    |-- frontend/admin/    (for existing Full Admin Access)
+    |-- frontend/shared/
+    |-- backend/app/
+    |-- database/
+    |-- uploads/
+    |-- data/              (server-only, not public)
+    |-- Dockerfile
+    |-- docker-compose.yml
+    `-- .env.example

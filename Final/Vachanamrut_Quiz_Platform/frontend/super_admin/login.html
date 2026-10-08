@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Super Admin Sign In</title>
+  <link rel="stylesheet" href="/assets/shared/css/styles.css?v=3.0.0">
+  <link rel="stylesheet" href="/assets/shared/css/login.css?v=3.0.0">
+</head>
+<body class="login-v14-body super-admin-access-page">
+  <main class="login-v14-shell super-admin-access-shell">
+    <section class="login-v14-visual super-auth-visual">
+      <div class="login-v14-brand">
+        <span class="login-v14-brandmark">S</span>
+        <span><strong>Vachanamrut Quiz</strong><small>Super Administration</small></span>
+      </div>
+
+      <div class="login-v14-copy super-auth-copy">
+        <span class="login-v14-kicker">SUPER ADMIN CONTROL</span>
+        <h1>One secure place to control the complete platform.</h1>
+        <p>Approve Administrators, review Local User analytics, manage access and open every Administration module from one protected owner account.</p>
+      </div>
+
+      <div class="login-v14-points super-auth-points">
+        <article><span>01</span><div><strong>Administrator control</strong><small>Approve requests and manage Administrator access.</small></div></article>
+        <article><span>02</span><div><strong>Local User analytics</strong><small>Review activity, progress, completion and accuracy.</small></div></article>
+        <article><span>03</span><div><strong>Protected owner access</strong><small>One Super Admin account with full platform control.</small></div></article>
+      </div>
+    </section>
+
+    <section class="login-v14-main super-admin-auth-main">
+      <div class="login-v14-card super-admin-auth-card">
+        <div id="signInView">
+          <div class="super-admin-card-head">
+            <div>
+              <div class="login-v14-eyebrow">OWNER ACCESS</div>
+              <h2>Super Admin Sign In</h2>
+              <p id="setupNote">Sign in with the registered Super Admin email address.</p>
+            </div>
+            <span class="super-admin-secure-badge">SUPER ADMIN</span>
+          </div>
+
+          <form id="loginForm" class="login-v14-panel super-admin-form">
+            <div class="field">
+              <label>Email Address</label>
+              <input id="identifier" class="input" name="identifier" autocomplete="username" required placeholder="Enter Super Admin email address">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <div class="password-field">
+                <input id="password" class="input" type="password" name="password" minlength="5" autocomplete="current-password" required placeholder="Enter password">
+                <button class="password-toggle" type="button" onclick="togglePassword('password',this)">Show</button>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block super-admin-primary" type="submit">Sign In</button>
+            <button id="forgotPasswordButton" class="super-admin-forgot-link" type="button">Forgot password?</button>
+            <p id="error" class="error small"></p>
+          </form>
+        </div>
+
+        <div id="resetView" class="hidden">
+          <button id="backToSignIn" class="super-admin-back" type="button">← Back to Sign In</button>
+          <div class="super-admin-reset-head">
+            <div class="login-v14-eyebrow">SECURE PASSWORD RECOVERY</div>
+            <h2>Reset Super Admin Password</h2>
+            <p>Verify the registered email address with a 4-digit code before creating a new password.</p>
+          </div>
+
+          <div id="resetNotice" class="super-admin-reset-notice hidden"></div>
+
+          <form id="emailStep" class="super-admin-reset-step">
+            <div class="super-admin-step-number">1</div>
+            <div class="super-admin-step-content">
+              <h3>Registered email</h3>
+              <p>Enter the email address saved on the Super Admin account.</p>
+              <div class="field">
+                <label>Email Address</label>
+                <input id="resetEmail" class="input" type="email" autocomplete="email" required placeholder="name@example.com">
+              </div>
+              <button class="btn btn-primary btn-block super-admin-primary" type="submit">Send 4-Digit Code</button>
+            </div>
+          </form>
+
+          <form id="otpStep" class="super-admin-reset-step hidden">
+            <div class="super-admin-step-number">2</div>
+            <div class="super-admin-step-content">
+              <h3>Verify code</h3>
+              <p>Enter the 4-digit code sent to <strong id="otpEmailLabel"></strong>.</p>
+              <div id="otpInputs" class="super-admin-otp-grid" aria-label="4 digit verification code">
+                <input class="super-admin-otp-input" inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1">
+                <input class="super-admin-otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+                <input class="super-admin-otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+                <input class="super-admin-otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+              </div>
+              <button class="btn btn-primary btn-block super-admin-primary" type="submit">Verify Code</button>
+              <button id="resendOtp" class="super-admin-secondary-link" type="button">Resend code</button>
+            </div>
+          </form>
+
+          <form id="passwordStep" class="super-admin-reset-step hidden">
+            <div class="super-admin-step-number">3</div>
+            <div class="super-admin-step-content">
+              <h3>Create new password</h3>
+              <p>Use at least 5 characters for the new password.</p>
+              <div class="field">
+                <label>New Password</label>
+                <div class="password-field">
+                  <input id="newPassword" class="input" type="password" minlength="5" autocomplete="new-password" required placeholder="Minimum 5 characters">
+                  <button class="password-toggle" type="button" onclick="togglePassword('newPassword',this)">Show</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>Confirm New Password</label>
+                <div class="password-field">
+                  <input id="confirmNewPassword" class="input" type="password" minlength="5" autocomplete="new-password" required placeholder="Re-enter new password">
+                  <button class="password-toggle" type="button" onclick="togglePassword('confirmNewPassword',this)">Show</button>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-block super-admin-primary" type="submit">Create New Password</button>
+            </div>
+          </form>
+
+          <p id="resetError" class="error small"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script src="/assets/shared/js/common.js?v=3.0.0"></script>
+<script>
+let resetEmailValue='';
+let resetToken='';
+
+function togglePassword(id,button){
+  const input=byId(id);
+  input.type=input.type==='password'?'text':'password';
+  button.textContent=input.type==='password'?'Show':'Hide';
+}
+function showResetNotice(message,type='info'){
+  const box=byId('resetNotice');
+  box.textContent=message||'';
+  box.className='super-admin-reset-notice'+(message?' '+type:' hidden');
+}
+function resetError(message=''){byId('resetError').textContent=message;}
+function openReset(){
+  byId('signInView').classList.add('hidden');
+  byId('resetView').classList.remove('hidden');
+  byId('emailStep').classList.remove('hidden');
+  byId('otpStep').classList.add('hidden');
+  byId('passwordStep').classList.add('hidden');
+  resetEmailValue=''; resetToken=''; resetError(''); showResetNotice('');
+  const identifier=byId('identifier').value.trim();
+  if(identifier.includes('@')) byId('resetEmail').value=identifier;
+  setTimeout(()=>byId('resetEmail').focus(),50);
+}
+function closeReset(){
+  byId('resetView').classList.add('hidden');
+  byId('signInView').classList.remove('hidden');
+  resetError(''); showResetNotice('');
+}
+function readOtp(){return [...document.querySelectorAll('.super-admin-otp-input')].map(i=>i.value).join('');}
+function clearOtp(){document.querySelectorAll('.super-admin-otp-input').forEach(i=>i.value='');}
+
+byId('loginForm').onsubmit=async e=>{
+  e.preventDefault(); byId('error').textContent='';
+  try{
+    const d=await api('/api/super-admin-login',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});
+    location.href=d.redirect;
+  }catch(err){byId('error').textContent=err.message;}
+};
+byId('forgotPasswordButton').onclick=openReset;
+byId('backToSignIn').onclick=closeReset;
+
+byId('emailStep').onsubmit=async e=>{
+  e.preventDefault(); resetError(''); showResetNotice('');
+  resetEmailValue=byId('resetEmail').value.trim().toLowerCase();
+  try{
+    const d=await api('/api/super-admin-password-reset/request',{method:'POST',body:JSON.stringify({email:resetEmailValue})});
+    byId('otpEmailLabel').textContent=resetEmailValue;
+    byId('emailStep').classList.add('hidden');
+    byId('otpStep').classList.remove('hidden');
+    clearOtp(); showResetNotice(d.message,d.delivery==='local_outbox'?'warning':'success');
+    setTimeout(()=>document.querySelector('.super-admin-otp-input').focus(),50);
+  }catch(err){resetError(err.message);}
+};
+
+byId('resendOtp').onclick=async()=>{
+  resetError(''); showResetNotice('');
+  try{
+    const d=await api('/api/super-admin-password-reset/request',{method:'POST',body:JSON.stringify({email:resetEmailValue})});
+    clearOtp(); showResetNotice(d.message,d.delivery==='local_outbox'?'warning':'success');
+    document.querySelector('.super-admin-otp-input').focus();
+  }catch(err){resetError(err.message);}
+};
+
+byId('otpStep').onsubmit=async e=>{
+  e.preventDefault(); resetError(''); showResetNotice('');
+  const code=readOtp();
+  if(!/^\d{4}$/.test(code)){resetError('Enter the complete 4-digit verification code.');return;}
+  try{
+    const d=await api('/api/super-admin-password-reset/verify',{method:'POST',body:JSON.stringify({email:resetEmailValue,code})});
+    resetToken=d.reset_token;
+    byId('otpStep').classList.add('hidden');
+    byId('passwordStep').classList.remove('hidden');
+    showResetNotice(d.message,'success');
+    setTimeout(()=>byId('newPassword').focus(),50);
+  }catch(err){resetError(err.message);}
+};
+
+byId('passwordStep').onsubmit=async e=>{
+  e.preventDefault(); resetError('');
+  const newPassword=byId('newPassword').value;
+  const confirmPassword=byId('confirmNewPassword').value;
+  if(newPassword.length<5){resetError('Password must contain at least 5 characters.');return;}
+  if(newPassword!==confirmPassword){resetError('New Password and Confirm New Password do not match.');return;}
+  try{
+    const d=await api('/api/super-admin-password-reset/complete',{method:'POST',body:JSON.stringify({reset_token:resetToken,new_password:newPassword})});
+    byId('identifier').value=resetEmailValue;
+    byId('password').value='';
+    closeReset();
+    byId('error').className='success small';
+    byId('error').textContent=d.message;
+    setTimeout(()=>byId('password').focus(),50);
+  }catch(err){resetError(err.message);}
+};
+
+const otpInputs=[...document.querySelectorAll('.super-admin-otp-input')];
+otpInputs.forEach((input,index)=>{
+  input.addEventListener('input',()=>{
+    input.value=input.value.replace(/\D/g,'').slice(-1);
+    if(input.value && index<otpInputs.length-1) otpInputs[index+1].focus();
+  });
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!input.value&&index>0) otpInputs[index-1].focus();
+    if(e.key==='ArrowLeft'&&index>0) otpInputs[index-1].focus();
+    if(e.key==='ArrowRight'&&index<otpInputs.length-1) otpInputs[index+1].focus();
+  });
+  input.addEventListener('paste',e=>{
+    const digits=(e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,4);
+    if(!digits)return;
+    e.preventDefault();
+    digits.split('').forEach((digit,i)=>{if(otpInputs[i])otpInputs[i].value=digit;});
+    otpInputs[Math.min(digits.length,4)-1].focus();
+  });
+});
+
+(async()=>{
+  try{
+    const availability=await api('/api/super-admin-availability');
+    byId('setupNote').textContent=availability.setup_required
+      ?'First-time owner setup: enter an email address or phone number and a password. This becomes the only Super Admin account.'
+      :'Sign in with the registered Super Admin email address.';
+    try{
+      const d=await api('/api/me');
+      if(d.user.role==='super_admin') location.href='/super-admin';
+      else if(d.user.role==='admin') location.href='/admin';
+      else location.href='/';
+    }catch(_){}
+  }catch(_){}
+})();
+</script>
+</body>
+</html>

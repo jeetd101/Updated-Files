@@ -1,0 +1,29 @@
+(function(){"use strict";var l=Intl.DateTimeFormat().resolvedOptions().timeZone,E=l==="Asia/Kolkata"||l==="Asia/Calcutta",f=Date.UTC(2026,6,19,21,0,0),w='<span class="hl">ENDING SOON:</span> GRAB OUR WORLD CUP FEVER OFFER! \u26BD',T=E?"\u20B9999/month":"$9/month",i=80,m=992,g=document.currentScript||document.querySelector("script[data-utm_source]")||document.querySelector('script[src*="banner.js"]'),s=g&&g.getAttribute("data-utm_source"),C=s==="world_cup_banner"?"https://programiz.pro/pricing":"https://programiz.pro/world-cup-offer",S=D(C),_=`
+    <span id="pgz-timer"></span>
+    <span id="pgz-title">${w}</span>
+    <a id="pgz-cta" href="${S}" target="_blank" rel="noreferrer">${T}</a>
+    <button id="pgz-close" type="button" aria-label="Dismiss banner">&times;</button>
+  `,A=`
+    #pgz-banner { display: none; }
+
+    @media (min-width: ${m}px) {
+      #pgz-banner { position: fixed; top: 0; left: 0; right: 0; height: ${i}px;
+        z-index: 2147483000; box-sizing: border-box; display: flex; align-items: center;
+        justify-content: space-between; gap: 16px; padding: 0 20px;
+        background: rgb(248, 167, 55); color: #fff; font-family: "Euclid Circular A", "Euclid Circular A Medium", system-ui, sans-serif; }
+      #pgz-banner .hl { color: #ffe8d6; }
+      #pgz-timer { background: #fff; color: #222; font-weight: 400; font-size: 14px; padding: 8px 14px;
+        border-radius: 8px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      #pgz-title { flex: 1; text-align: center; font-size: 24px; font-weight: 700; }
+      #pgz-cta { background: #fff; color: #0456f3; font-weight: 500; padding: 8px 18px;
+        border-radius: 4px; text-decoration: none; white-space: nowrap; margin-right: 56px; }
+      #pgz-close { position: absolute; top: 8px; right: 12px; background: none; border: 0;
+        color: #3a2a10; font-size: 22px; line-height: 1; cursor: pointer; opacity: .8; padding: 4px; }
+      #pgz-close:hover { opacity: 1; }
+      body { padding-top: ${i}px !important; }
+    }
+
+    @media (min-width: 1024px) {
+      #pgz-cta { padding: 10px 20px; font-size: 20px; }
+    }
+  `;function D(e){if(!s)return e;try{var t=new URL(e);return t.searchParams.set("utm_source",s),t.toString()}catch{return e}}function p(e){return String(e).padStart(2,"0")}function v(){var e=Math.floor(Math.max(0,f-Date.now())/1e3),t=Math.floor(e/86400),r=Math.floor(e%86400/3600),d=Math.floor(e%3600/60);return t+"d: "+p(r)+"h: "+p(d)+"m: "+p(e%60)+"s"}var n=null,b=0,a=null,o=null,c=null,h=s==="programiz_com";function P(e){for(;e&&e!==document.body;){var t=getComputedStyle(e).position;if(t==="sticky"||t==="fixed")return e;e=e.parentElement}return null}function L(){if(n)return!0;var e=document.querySelector('[data-framer-name="Header"]')||document.querySelector("header"),t=e&&P(e);return t&&(n=t,b=parseFloat(getComputedStyle(t).top)||0),!!n}function I(){if(!(!h||a)){var e=document.querySelectorAll(".sub-menu--pc, .sub-menu--backdrop");e.length&&(a=Array.prototype.map.call(e,function(t){return{el:t,baseTop:parseFloat(getComputedStyle(t).top)||0}}))}}function u(){var e=L();I();var t=h?"important":"";return n&&n.style.setProperty("top",b+i+"px",t),a&&a.forEach(function(r){r.el.style.setProperty("top",r.baseTop+i+"px",t)}),e}function y(){n&&n.style.removeProperty("top"),a&&a.forEach(function(e){e.el.style.removeProperty("top")})}function M(e,t,r){clearInterval(r),e.remove(),t.remove(),document.documentElement.style.removeProperty("--pgz-banner-offset"),o&&o.disconnect(),c&&window.removeEventListener("resize",c),y()}function x(){var e=document.createElement("style");e.textContent=A,document.head.appendChild(e);var t=document.createElement("div");t.id="pgz-banner",t.innerHTML=_,document.body.insertBefore(t,document.body.firstChild),document.documentElement.style.setProperty("--pgz-banner-offset",i+"px");var r=t.querySelector("#pgz-timer");r.textContent=v();var d=setInterval(function(){r.textContent=v()},1e3);t.querySelector("#pgz-close").addEventListener("click",function(k){k.stopPropagation(),M(t,e,d)}),u()||(o=new MutationObserver(function(){u()&&o.disconnect()}),o.observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"]}),setTimeout(function(){o&&o.disconnect()},5e3)),c=function(){z()?u():y()},window.addEventListener("resize",c)}function z(){return window.innerWidth>=m}function R(){Date.now()>=f||z()&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",x,{once:!0}):x())}R()})();
