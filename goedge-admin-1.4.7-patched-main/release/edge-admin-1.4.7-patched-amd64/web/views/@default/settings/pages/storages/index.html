@@ -1,0 +1,32 @@
+{$layout}
+
+{$template "menu"}
+
+<b-empty v-if="storages.length == 0">暂时还没有存储。</b-empty>
+
+<table class="ui table selectable celled" v-if="storages.length > 0">
+    <thead>
+        <tr>
+            <th>存储名称</th>
+            <th class="center width10">类型</th>
+            <th>存储路径</th>
+            <th class="center width10">添加时间</th>
+            <th class="two op">操作</th>
+        </tr>
+    </thead>
+    <tr v-for="storage in storages">
+        <td>{{storage.name}}
+        </td>
+        <td class="center">
+            <span v-if="storage.type == 'local'">本地文件系统</span>
+            <span v-else-if="storage.type == 'nfs'">本地文件系统</span>
+            <span v-else-if="storage.type == 's3'">S3对象存储</span>
+            <span v-else>-</span>
+        </td>
+        <td>{{storage.setting.storagePath}}</td>
+        <td class="center">{{storage.createdAt}}</td>
+        <td>
+            <a href="" @click.prevent="deleteStorage(storage.id)">删除</a>
+        </td>
+    </tr>
+</table>

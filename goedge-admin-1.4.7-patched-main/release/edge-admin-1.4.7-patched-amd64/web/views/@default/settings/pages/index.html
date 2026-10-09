@@ -1,0 +1,66 @@
+{$layout}
+
+<first-menu>
+	<a href="/settings/pages" class="item">服务配置</a>
+    <a href="/settings/pages/storages" class="item">存储管理</a>
+    <a href="/settings/pages/storages/create" class="item">添加存储</a>
+</first-menu>
+
+<div class="margin"></div>
+<form method="post" class="ui form" data-tea-action="$" data-tea-success="success">
+	<csrf-token></csrf-token>
+	<table class="ui table definition selectable">
+        <tbody>
+            <tr>
+                <td class="color-border">启用</td>
+                <td>
+                    <checkbox name="isOn" v-model="config.isOn"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="color-border">默认存储</td>
+                <td>
+                    <b-select
+                    name="storageId"
+                    v-model="storageId"
+                    :options="[
+                        ...storages.map(node => ({
+                            label: node.name??'',
+                            value: node.id??'',
+                        }))
+                    ]"
+                ></b-select>
+                <p class="comment">选中后表示后续存储使用该存储方式存储用户上传的pages页面。</p>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td class="color-border">存储大小限制</td>
+                <td>
+                    <b-select
+                    name="storageSizeLimit"
+                    v-model="storageSizeLimit"
+                    :options="[
+                        ...storageSizeLimitMaps.map(node => ({
+                            label: node.name??'',
+                            value: node.size??'',
+                        }))
+                    ]"
+                ></b-select>
+                </td>
+            </tr> -->
+            <tr>
+                <td class="color-border">默认首页</td>
+                <td>
+                    <input type="text" name="indexPage" v-model="config.defaultPage" maxlength="50" placeholder="默认首页"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="color-border">默认404页面</td>
+                <td>
+                    <input type="text" name="default404Page" v-model="config.default404Page" maxlength="50" placeholder="404.html"/>
+                </td>
+            </tr>
+        </tbody>
+	</table>
+	<submit-btn></submit-btn>
+</form>
